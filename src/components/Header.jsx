@@ -7,7 +7,11 @@ const Header = () => {
     <div className="navbar">
       <img className="navbar__logo" src={logo} alt="Logo Kasa" />
       <div className="navbar__box">
-        <Link to="/">Accueil</Link>
+        <Link to="/" onClick={() => console.log('click')}>
+          {' '}
+          {/* Set underline system*/}
+          Accueil
+        </Link>
         <Link to="/about">A Propos</Link>
       </div>
     </div>

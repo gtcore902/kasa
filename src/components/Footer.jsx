@@ -11,7 +11,7 @@ const Footer = () => {
         src={logo}
         alt="Illustration chaîne de montagne"
       />
-      <p>&copy; 2020 Kasa. All rights reserved</p>
+      <p className="footer__content">&copy; 2020 Kasa. All rights reserved</p>
     </div>
   );
 };
