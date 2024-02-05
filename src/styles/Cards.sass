@@ -1,0 +1,17 @@
+@use 'shared.sass'
+
+.card-container
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-wrap: wrap
+    column-gap: 60px
+    row-gap: 50px
+    padding: 56px 50px
+    border-radius: shared.$border-radius
+    background: #F6F6F6
+    margin: 45px 100px 50px 45px
+    @media screen and (max-width: 768px)
+        margin: 27px 20px 22px 20px
+        padding: 56px 0
+        background: transparent

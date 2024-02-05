@@ -1,6 +1,21 @@
-.card-container
-    display: flex
-    flex-wrap: wrap
-    column-gap: 60px
-    rox-gap: 50px
-    padding: 56px 50px
+@use 'shared.sass'
+
+.card-link
+    text-decoration: none
+    &__box
+        box-sizing: border-box
+        display: flex
+        align-items: flex-end
+        width: 340px
+        height: 340px
+        background: shared.$red-color
+        border-radius: 10px
+        padding: 20px
+        @media screen and (max-width: 768px)
+            width: 280px
+
+    &__title
+        @include shared.main-font
+        font-size: 18px
+        font-weight: 700
+        color: white
