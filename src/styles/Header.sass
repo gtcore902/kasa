@@ -1,3 +1,35 @@
+@use 'shared.sass'
+
 .navbar 
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 45px 100px 50px 45px
+    @include shared.main-font
+    font-weight: 500
+    @media screen and (max-width: 768px)
+        padding: 20px 20px 27px 20px
+
+    &__logo
+        max-width: 210px
+        @media screen and (max-width: 768px)
+            max-width: 145px
+
+    &__box
+        display: flex
     a
-        color: red
+        font-size: 20px
+        color: black
+        text-decoration: none
+        padding: 0 28px
+
+        &:hover
+            text-decoration: underline
+        &:last-child
+            padding: 0 0 0 28px
+            @media screen and (max-width: 768px)
+                padding: 0 13px
+        @media screen and (max-width: 768px)
+            font-size: 12px
+            padding: 0 13px
+            text-transform: uppercase
