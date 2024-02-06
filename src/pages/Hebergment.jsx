@@ -1,6 +1,8 @@
 import { ThemeContext } from '../App';
-import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import { redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
+import { useContext, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Tag from '../components/Tag';
 import greyStar from '../assets/grey-star.svg';
@@ -8,14 +10,18 @@ import redStar from '../assets/red-star.svg';
 import '../styles/Hebergment.sass';
 
 const Hebergment = () => {
-  const navigate = useNavigate();
   const hebergments = useContext(ThemeContext);
   let { hebergmentId } = useParams();
-  let targetedHebergment = hebergments.filter(
-    (element) => element.id === hebergmentId
-  );
-  const nbStars = parseInt(targetedHebergment[0].rating);
-  const range = [1, 2, 3, 4, 5];
+  let target = hebergments.filter((element) => element.id === hebergmentId);
+  console.log(target);
+  const [targetedHebergment] = useState(target);
+  // const navigate = useNavigate();
+  const [nbStars, setNbStars] = useState();
+  useEffect(() => {
+    setNbStars(targetedHebergment[0].rating);
+  }, [targetedHebergment]);
+
+  const [range] = useState([1, 2, 3, 4, 5]);
 
   if (targetedHebergment.length === 1) {
     return (
@@ -58,18 +64,20 @@ const Hebergment = () => {
               ))}
             </div>
             <div className="hebergment-container__details__stars">
-              {range.map((element) =>
+              {range.map((element, index) =>
                 nbStars >= element ? (
                   <img
+                    key={index}
                     className="hebergment-container__details__star"
                     src={redStar}
                     alt="Etoile rouge"
                   />
                 ) : null
               )}
-              {range.map((element) =>
+              {range.map((element, index) =>
                 nbStars < element ? (
                   <img
+                    key={index}
                     className="hebergment-container__details__star"
                     src={greyStar}
                     alt="Etoile grise"
@@ -84,8 +92,9 @@ const Hebergment = () => {
         </div>
       </div>
     );
+  } else {
+    return <Navigate replace to="../../*" />;
   }
-  return navigate('./error'); // Check here error or warning in console
 };
 
 export default Hebergment;
