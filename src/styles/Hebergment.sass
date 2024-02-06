@@ -1,0 +1,35 @@
+@use 'shared.sass'
+
+.hebergment-container
+    margin: 0 100px 50px 100px
+    @include shared.main-font
+    &__slider
+        display: flex
+        justify-content: center
+        align-items: center
+        height: 415px
+        overflow: hidden
+        border-radius: 25px
+    &__header
+        display: flex
+        justify-content: space-between
+        padding-top: 24px
+        &__title
+            font-size: 36px
+            font-weight: 500
+            color: shared.$red-color
+            margin: 0 auto
+        &__location
+            font-size: 18px
+            font-weight: 500
+            margin-top: 8px
+        &__host
+            display: flex
+            //flex-direction: column
+        &__name
+            color: shared.$red-color
+            margin-right: 10px
+        &__picture
+            width: 64px
+            height: 64px
+            border-radius: 999px

@@ -1,12 +1,14 @@
 @use 'shared.sass'
 
+.collapse-container
+    margin: 0 208px
+    @media screen and (max-width: 768px)
+        margin: 27px 20px 22px 20px
+
 .collapse
     display: flex
     flex-direction: column
     justify-content: space-between
-    margin: 0 208px
-    @media screen and (max-width: 768px)
-        margin: 27px 20px 22px 20px
 
     &__title
         display: flex
