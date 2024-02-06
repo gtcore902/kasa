@@ -1,6 +1,5 @@
 import { ThemeContext } from '../App';
 // import { useNavigate } from 'react-router-dom';
-// import { redirect } from 'react-router-dom';
 import { Navigate } from 'react-router-dom';
 import { useContext, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
@@ -12,13 +11,17 @@ import '../styles/Hebergment.sass';
 const Hebergment = () => {
   const hebergments = useContext(ThemeContext);
   let { hebergmentId } = useParams();
+  console.log(hebergmentId);
   let target = hebergments.filter((element) => element.id === hebergmentId);
   console.log(target);
   const [targetedHebergment] = useState(target);
   // const navigate = useNavigate();
   const [nbStars, setNbStars] = useState();
+
   useEffect(() => {
-    setNbStars(targetedHebergment[0].rating);
+    if (targetedHebergment.length === 1) {
+      setNbStars(targetedHebergment[0].rating);
+    }
   }, [targetedHebergment]);
 
   const [range] = useState([1, 2, 3, 4, 5]);
@@ -93,7 +96,7 @@ const Hebergment = () => {
       </div>
     );
   } else {
-    return <Navigate replace to="../../*" />;
+    return <Navigate replace to="../../error" />;
   }
 };
 
