@@ -1,0 +1,32 @@
+@use 'shared.sass'
+
+.error-container
+    color: shared.$red-color
+    text-align: center
+    @include shared.main-font
+
+    &__code
+        font-size: 288px
+        font-weight: 700
+        margin: 139px auto
+        @media screen and (max-width: 768px)
+            font-size: 96px
+            margin: 113px auto
+
+    &__content
+        font-size: 36px
+        font-weight: 500
+        margin: 139px auto
+        @media screen and (max-width: 768px)
+            font-size: 18px
+            margin: 113px 58px
+    &__link
+        display: block
+        margin: 139px auto
+        color: black
+        font-size: 18px
+        font-weight: 500
+        @media screen and (max-width: 768px)
+            font-size: 14px
+            margin: 113px auto
+

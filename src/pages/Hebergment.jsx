@@ -1,7 +1,7 @@
 import { ThemeContext } from '../App';
+import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 
 const Hebergment = () => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const Hebergment = () => {
       </div>
     );
   }
-  return navigate('./error'); // Check here
+  return navigate('./error'); // Check here error
 };
 
 export default Hebergment;
