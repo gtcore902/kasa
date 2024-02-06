@@ -16,17 +16,15 @@ const Hebergment = () => {
   );
   const nbStars = parseInt(targetedHebergment[0].rating);
   const range = [1, 2, 3, 4, 5];
-  // console.log(targetedHebergment.length > 0);
-  // const hebergmentIdInt = parseInt(hebergmentId);
-  // console.log(hebergments);
-  // console.log(hebergmentId);
-  // console.log(targetedHebergment[0]);
 
   if (targetedHebergment.length === 1) {
     return (
       <div className="hebergment-container">
         <div className="hebergment-container__slider">
-          <img src={targetedHebergment[0].cover} alt="" />
+          <img
+            src={targetedHebergment[0].cover}
+            alt={targetedHebergment[0].title}
+          />
         </div>
         <div className="hebergment-container__content">
           {/* Header container */}
@@ -54,7 +52,6 @@ const Hebergment = () => {
           </div>
           {/* Details container */}
           <div className="hebergment-container__details">
-            {/* Tag name components here */}
             <div className="hebergment-container__details__tags">
               {targetedHebergment[0].tags.map((tag, index) => (
                 <Tag key={index} tagName={tag} />
