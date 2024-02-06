@@ -1,0 +1,44 @@
+@use 'shared.sass'
+
+.collapse
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    margin: 38px 208px 30px 208px
+    @media screen and (max-width: 768px)
+        margin: 27px 20px 22px 20px
+
+    &__title
+        display: flex
+        justify-content: space-between
+        color: white
+        font-size: 24px
+        font-weight: 700
+        @include shared.main-font
+        margin: 0
+        padding: 10px 20px 8px 15px
+        background-color: shared.$red-color
+        border-radius: 5px
+    &__arrow
+        width: 32px
+        height: 32px
+        transition: transform ease-in-out 0.300s
+        &--isRotate
+            transform: rotate(180deg)
+            transition: transform ease-in-out 0.300s
+    &__content
+        @include shared.main-font
+        font-size: 18px
+        font-weight: 400
+        height: 0
+        padding: 0
+        background-color: #F6F6F6
+        margin: 0
+        transform-origin: top
+        transform: scaleY(0)
+        transition: transform ease-in-out 0.300s
+        &--isOpen
+            height: 100%
+            padding: 25px 28px 20px 20px
+            transform: scaleY(1)
+            transition: transform ease-in-out 0.300s

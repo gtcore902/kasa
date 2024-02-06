@@ -17,14 +17,11 @@
 
     &__box
         display: flex
-    a
+    &__link
         font-size: 20px
         color: black
         text-decoration: none
         padding: 0 28px
-
-        &:hover
-            text-decoration: underline
         &:last-child
             padding: 0 0 0 28px
             @media screen and (max-width: 768px)
@@ -33,3 +30,6 @@
             font-size: 12px
             padding: 0 13px
             text-transform: uppercase
+        &--underline
+            text-decoration: underline
+
