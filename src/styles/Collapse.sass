@@ -4,7 +4,7 @@
     display: flex
     flex-direction: column
     justify-content: space-between
-    margin: 38px 208px 30px 208px
+    margin: 0 208px
     @media screen and (max-width: 768px)
         margin: 27px 20px 22px 20px
 
@@ -30,15 +30,15 @@
         @include shared.main-font
         font-size: 18px
         font-weight: 400
-        height: 0
-        padding: 0
+        padding: 0 28px 0 20px
         background-color: #F6F6F6
         margin: 0
+        border-radius: 0 5px 5px 0
         transform-origin: top
         transform: scaleY(0)
-        transition: transform ease-in-out 0.300s
+        transition: all ease-in-out 0.300s
         &--isOpen
-            height: 100%
             padding: 25px 28px 20px 20px
+            margin-bottom: 30px
             transform: scaleY(1)
-            transition: transform ease-in-out 0.300s
+            transition: all ease-in-out 0.300s
