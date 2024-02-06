@@ -66,7 +66,7 @@ const Hebergment = () => {
                   <img
                     className="hebergment-container__details__star"
                     src={redStar}
-                    alt="Etoile grise"
+                    alt="Etoile rouge"
                   />
                 ) : null
               )}
