@@ -2,6 +2,9 @@ import { ThemeContext } from '../App';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
+import Tag from '../components/Tag';
+import greyStar from '../assets/grey-star.svg';
+import redStar from '../assets/red-star.svg';
 import '../styles/Hebergment.sass';
 
 const Hebergment = () => {
@@ -11,6 +14,8 @@ const Hebergment = () => {
   let targetedHebergment = hebergments.filter(
     (element) => element.id === hebergmentId
   );
+  const nbStars = parseInt(targetedHebergment[0].rating);
+  const range = [1, 2, 3, 4, 5];
   // console.log(targetedHebergment.length > 0);
   // const hebergmentIdInt = parseInt(hebergmentId);
   // console.log(hebergments);
@@ -36,18 +41,45 @@ const Hebergment = () => {
             </div>
             <div className="hebergment-container__header__host">
               <p className="hebergment-container__header__name">
-                {targetedHebergment[0].host.name}
+                {targetedHebergment[0].host.name.split(' ')[0]}
+                <br />
+                {targetedHebergment[0].host.name.split(' ')[1]}
               </p>
               <img
                 className="hebergment-container__header__picture"
                 src={targetedHebergment[0].host.picture}
-                alt=""
+                alt={targetedHebergment[0].host.name}
               />
             </div>
           </div>
           {/* Details container */}
           <div className="hebergment-container__details">
-            {/* Tag name omponents here */}
+            {/* Tag name components here */}
+            <div className="hebergment-container__details__tags">
+              {targetedHebergment[0].tags.map((tag, index) => (
+                <Tag key={index} tagName={tag} />
+              ))}
+            </div>
+            <div className="hebergment-container__details__stars">
+              {range.map((element) =>
+                nbStars >= element ? (
+                  <img
+                    className="hebergment-container__details__star"
+                    src={redStar}
+                    alt="Etoile grise"
+                  />
+                ) : null
+              )}
+              {range.map((element) =>
+                nbStars < element ? (
+                  <img
+                    className="hebergment-container__details__star"
+                    src={greyStar}
+                    alt="Etoile grise"
+                  />
+                ) : null
+              )}
+            </div>
           </div>
           <div className="hebergment-container__collapses">
             {/* Collapses components */}
@@ -56,7 +88,7 @@ const Hebergment = () => {
       </div>
     );
   }
-  return navigate('./error'); // Check here error
+  return navigate('./error'); // Check here error or warning in console
 };
 
 export default Hebergment;
