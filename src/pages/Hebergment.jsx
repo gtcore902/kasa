@@ -3,6 +3,7 @@ import { ThemeContext } from '../App';
 import { Navigate } from 'react-router-dom';
 import { useContext, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import Slider from '../components/Slider';
 import Tag from '../components/Tag';
 import Collapse from '../components/Collapse';
 import Footer from '../components/Footer';
@@ -13,12 +14,46 @@ import '../styles/Hebergment.sass';
 const Hebergment = () => {
   const hebergments = useContext(ThemeContext);
   let { hebergmentId } = useParams();
-  console.log(hebergmentId);
+  // console.log(hebergmentId);
   let target = hebergments.filter((element) => element.id === hebergmentId);
-  console.log(target);
+  // console.log(target);
   const [targetedHebergment] = useState(target);
+  const [sliderArray, setSliderArray] = useState();
+  const [currentPicture, setCurrentPicture] = useState();
   // const navigate = useNavigate();
   const [nbStars, setNbStars] = useState();
+
+  useEffect(() => {
+    setCurrentPicture(targetedHebergment[0].pictures[0]);
+  }, []);
+  console.log(currentPicture);
+
+  useEffect(() => {
+    setSliderArray(targetedHebergment[0].pictures);
+    // console.log(sliderArray.length);
+  }, []);
+
+  // Increase index image on click on the right arrow
+  const increaseImageIndex = () => {
+    const thisElement = sliderArray.indexOf(currentPicture);
+    if (thisElement === sliderArray.length - 1) {
+      setCurrentPicture(sliderArray[0]);
+    } else {
+      setCurrentPicture(sliderArray[thisElement + 1]);
+    }
+    console.log(thisElement);
+  };
+
+  // Decrease index image on click on the left arrow
+  const decreaseImageIndex = () => {
+    const thisElement = sliderArray.indexOf(currentPicture);
+    if (thisElement === 0) {
+      setCurrentPicture(sliderArray[sliderArray.length - 1]);
+    } else {
+      setCurrentPicture(sliderArray[thisElement - 1]);
+    }
+    console.log(thisElement);
+  };
 
   useEffect(() => {
     if (targetedHebergment.length === 1) {
@@ -32,12 +67,15 @@ const Hebergment = () => {
     return (
       <div>
         <div className="hebergment-container">
-          <div className="hebergment-container__slider">
-            <img
+          <Slider
+            src={currentPicture}
+            alt={targetedHebergment[0].title}
+            updateDisplayedPicture={decreaseImageIndex}
+          />
+          {/* <img
               src={targetedHebergment[0].cover}
               alt={targetedHebergment[0].title}
-            />
-          </div>
+            /> */}
           <div className="hebergment-container__content">
             {/* Header container */}
             <div className="hebergment-container__header">
