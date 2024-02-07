@@ -116,7 +116,7 @@ const Hebergment = () => {
       </div>
     );
   } else {
-    return <Navigate replace to="../../error" />;
+    return <Navigate to="../../error" />;
   }
 };
 
