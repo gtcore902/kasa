@@ -4,6 +4,8 @@ import { Navigate } from 'react-router-dom';
 import { useContext, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Tag from '../components/Tag';
+import Collapse from '../components/Collapse';
+import Footer from '../components/Footer';
 import greyStar from '../assets/grey-star.svg';
 import redStar from '../assets/red-star.svg';
 import '../styles/Hebergment.sass';
@@ -28,71 +30,89 @@ const Hebergment = () => {
 
   if (targetedHebergment.length === 1) {
     return (
-      <div className="hebergment-container">
-        <div className="hebergment-container__slider">
-          <img
-            src={targetedHebergment[0].cover}
-            alt={targetedHebergment[0].title}
-          />
-        </div>
-        <div className="hebergment-container__content">
-          {/* Header container */}
-          <div className="hebergment-container__header">
-            <div>
-              <h1 className="hebergment-container__header__title">
-                {targetedHebergment[0].title}
-              </h1>
-              <p className="hebergment-container__header__location">
-                {targetedHebergment[0].location}
-              </p>
+      <div>
+        <div className="hebergment-container">
+          <div className="hebergment-container__slider">
+            <img
+              src={targetedHebergment[0].cover}
+              alt={targetedHebergment[0].title}
+            />
+          </div>
+          <div className="hebergment-container__content">
+            {/* Header container */}
+            <div className="hebergment-container__header">
+              <div>
+                <h1 className="hebergment-container__header__title">
+                  {targetedHebergment[0].title}
+                </h1>
+                <p className="hebergment-container__header__location">
+                  {targetedHebergment[0].location}
+                </p>
+              </div>
+              <div className="hebergment-container__header__host">
+                <p className="hebergment-container__header__name">
+                  {targetedHebergment[0].host.name.split(' ')[0]}
+                  <br />
+                  {targetedHebergment[0].host.name.split(' ')[1]}
+                </p>
+                <img
+                  className="hebergment-container__header__picture"
+                  src={targetedHebergment[0].host.picture}
+                  alt={targetedHebergment[0].host.name}
+                />
+              </div>
             </div>
-            <div className="hebergment-container__header__host">
-              <p className="hebergment-container__header__name">
-                {targetedHebergment[0].host.name.split(' ')[0]}
-                <br />
-                {targetedHebergment[0].host.name.split(' ')[1]}
-              </p>
-              <img
-                className="hebergment-container__header__picture"
-                src={targetedHebergment[0].host.picture}
-                alt={targetedHebergment[0].host.name}
+            {/* Details container */}
+            <div className="hebergment-container__details">
+              <div className="hebergment-container__details__tags">
+                {targetedHebergment[0].tags.map((tag, index) => (
+                  <Tag key={index} tagName={tag} />
+                ))}
+              </div>
+              <div className="hebergment-container__details__stars">
+                {range.map((element, index) =>
+                  nbStars >= element ? (
+                    <img
+                      key={index}
+                      className="hebergment-container__details__star"
+                      src={redStar}
+                      alt="Etoile rouge"
+                    />
+                  ) : null
+                )}
+                {range.map((element, index) =>
+                  nbStars < element ? (
+                    <img
+                      key={index}
+                      className="hebergment-container__details__star"
+                      src={greyStar}
+                      alt="Etoile grise"
+                    />
+                  ) : null
+                )}
+              </div>
+            </div>
+            <div className="hebergment-container__collapses">
+              {/* Collapses components */}
+              <Collapse
+                title="Description"
+                content={targetedHebergment[0].description}
+              />
+              <Collapse
+                // className="collapse__title--small"
+                title="Equipements"
+                content={
+                  <ul>
+                    {targetedHebergment[0].equipments.map((element, index) => {
+                      return <li key={index}>{element}</li>;
+                    })}
+                  </ul>
+                }
               />
             </div>
           </div>
-          {/* Details container */}
-          <div className="hebergment-container__details">
-            <div className="hebergment-container__details__tags">
-              {targetedHebergment[0].tags.map((tag, index) => (
-                <Tag key={index} tagName={tag} />
-              ))}
-            </div>
-            <div className="hebergment-container__details__stars">
-              {range.map((element, index) =>
-                nbStars >= element ? (
-                  <img
-                    key={index}
-                    className="hebergment-container__details__star"
-                    src={redStar}
-                    alt="Etoile rouge"
-                  />
-                ) : null
-              )}
-              {range.map((element, index) =>
-                nbStars < element ? (
-                  <img
-                    key={index}
-                    className="hebergment-container__details__star"
-                    src={greyStar}
-                    alt="Etoile grise"
-                  />
-                ) : null
-              )}
-            </div>
-          </div>
-          <div className="hebergment-container__collapses">
-            {/* Collapses components */}
-          </div>
         </div>
+        <Footer />
       </div>
     );
   } else {
