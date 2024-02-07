@@ -24,7 +24,7 @@ const Collapse = ({ title, content }) => {
           alt="Flèche d'ouverture et de fermeture"
         />
       </h2>
-      <p
+      <div
         className={
           isOpen
             ? 'collapse__content collapse__content--isOpen'
@@ -32,7 +32,7 @@ const Collapse = ({ title, content }) => {
         }
       >
         {content}
-      </p>
+      </div>
     </div>
   );
 };
