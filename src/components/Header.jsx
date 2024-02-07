@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import logo from '../assets/logo_kasa.svg';
 import '../styles/Header.sass';
 
@@ -13,14 +13,14 @@ const Header = () => {
     <div className="navbar">
       <img className="navbar__logo" src={logo} alt="Logo Kasa" />
       <div className="navbar__box">
-        <Link className="navbar__link" to="/">
+        <NavLink className="navbar__link" to="/">
           {' '}
           {/* Set underline system*/}
           Accueil
-        </Link>
-        <Link className="navbar__link" to="/about">
+        </NavLink>
+        <NavLink className="navbar__link" to="/about">
           A Propos
-        </Link>
+        </NavLink>
       </div>
     </div>
   );
