@@ -13,12 +13,20 @@ const Header = () => {
     <div className="navbar">
       <img className="navbar__logo" src={logo} alt="Logo Kasa" />
       <div className="navbar__box">
-        <NavLink className="navbar__link" to="/">
+        <NavLink
+          activeClassName="navbar__link--active"
+          className="navbar__link"
+          to="/"
+        >
           {' '}
           {/* Set underline system*/}
           Accueil
         </NavLink>
-        <NavLink className="navbar__link" to="/about">
+        <NavLink
+          activeClassName="navbar__link--active"
+          className="navbar__link"
+          to="/about"
+        >
           A Propos
         </NavLink>
       </div>
