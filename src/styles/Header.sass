@@ -4,16 +4,20 @@
     display: flex
     justify-content: space-between
     align-items: center
-    padding: 45px 100px 50px 100px
+    //padding: 45px 100px 50px 100px
+    margin: 45px 100px 50px 100px
     @include shared.main-font
     font-weight: 500
     @media screen and (max-width: 768px)
-        padding: 20px 20px 27px 20px
+        margin: 20px 20px 27px 20px
+
 
     &__logo
         max-width: 210px
         @media screen and (max-width: 768px)
             max-width: 145px
+        @media screen and (max-width: 369px)
+            max-width: 100px
 
     &__box
         display: flex

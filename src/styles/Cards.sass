@@ -3,7 +3,7 @@
 .card-container
     display: flex
     justify-content: center
-    align-items: center
+    //align-items: center
     flex-wrap: wrap
     column-gap: 60px
     row-gap: 50px
@@ -12,6 +12,8 @@
     background: #F6F6F6
     margin: 45px 100px 50px 100px
     @media screen and (max-width: 768px)
+        flex-direction: column
+        row-gap: 27px
         margin: 27px 20px 22px 20px
-        padding: 56px 0
+        padding: 0
         background: transparent

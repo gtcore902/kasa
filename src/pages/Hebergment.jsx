@@ -85,58 +85,61 @@ const Hebergment = () => {
               src={targetedHebergment[0].cover}
               alt={targetedHebergment[0].title}
             /> */}
-          <div className="hebergment-container__content">
+          <div className="">
             {/* Header container */}
-            <div className="hebergment-container__header">
-              <div>
-                <h1 className="hebergment-container__header__title">
-                  {targetedHebergment[0].title}
-                </h1>
-                <p className="hebergment-container__header__location">
-                  {targetedHebergment[0].location}
-                </p>
+            <div className="hebergment-container__content">
+              <div className="hebergment-container__header">
+                <div>
+                  <h1 className="hebergment-container__header__title">
+                    {targetedHebergment[0].title}
+                  </h1>
+                  <p className="hebergment-container__header__location">
+                    {targetedHebergment[0].location}
+                  </p>
+                </div>
+                <div className="hebergment-container__header__tags">
+                  {targetedHebergment[0].tags.map((tag, index) => (
+                    <Tag key={index} tagName={tag} />
+                  ))}
+                </div>
               </div>
-              <div className="hebergment-container__header__host">
-                <p className="hebergment-container__header__name">
-                  {targetedHebergment[0].host.name.split(' ')[0]}
-                  <br />
-                  {targetedHebergment[0].host.name.split(' ')[1]}
-                </p>
-                <img
-                  className="hebergment-container__header__picture"
-                  src={targetedHebergment[0].host.picture}
-                  alt={targetedHebergment[0].host.name}
-                />
-              </div>
-            </div>
-            {/* Details container */}
-            <div className="hebergment-container__details">
-              <div className="hebergment-container__details__tags">
-                {targetedHebergment[0].tags.map((tag, index) => (
-                  <Tag key={index} tagName={tag} />
-                ))}
-              </div>
-              <div className="hebergment-container__details__stars">
-                {range.map((element, index) =>
-                  nbStars >= element ? (
-                    <img
-                      key={index}
-                      className="hebergment-container__details__star"
-                      src={redStar}
-                      alt="Etoile rouge"
-                    />
-                  ) : null
-                )}
-                {range.map((element, index) =>
-                  nbStars < element ? (
-                    <img
-                      key={index}
-                      className="hebergment-container__details__star"
-                      src={greyStar}
-                      alt="Etoile grise"
-                    />
-                  ) : null
-                )}
+              {/* Details container */}
+              <div className="hebergment-container__details">
+                <div className="hebergment-container__details__host">
+                  <p className="hebergment-container__details__name">
+                    {targetedHebergment[0].host.name.split(' ')[0]}
+                    <br />
+                    {targetedHebergment[0].host.name.split(' ')[1]}
+                  </p>
+                  <img
+                    className="hebergment-container__details__picture"
+                    src={targetedHebergment[0].host.picture}
+                    alt={targetedHebergment[0].host.name}
+                  />
+                </div>
+
+                <div className="hebergment-container__details__stars">
+                  {range.map((element, index) =>
+                    nbStars >= element ? (
+                      <img
+                        key={index}
+                        className="hebergment-container__details__star"
+                        src={redStar}
+                        alt="Etoile rouge"
+                      />
+                    ) : null
+                  )}
+                  {range.map((element, index) =>
+                    nbStars < element ? (
+                      <img
+                        key={index}
+                        className="hebergment-container__details__star"
+                        src={greyStar}
+                        alt="Etoile grise"
+                      />
+                    ) : null
+                  )}
+                </div>
               </div>
             </div>
             <div className="hebergment-container__collapses">

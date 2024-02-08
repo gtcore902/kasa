@@ -3,6 +3,16 @@
 .hebergment-container
     margin: 0 100px 50px 100px
     @include shared.main-font
+    @media all and (max-width: 768px)
+        margin: 0 20px 50px 20px
+
+    &__content
+        display: flex
+        justify-content: space-between
+        margin-top: 30px
+        @media all and (max-width: 768px)
+            flex-direction: column
+
     &__slider
         position: relative
         display: flex
@@ -11,6 +21,8 @@
         height: 415px
         overflow: hidden
         border-radius: 25px
+        @media all and (max-width: 768px)
+            height: 255px
         &__arrow
             position: absolute
             padding: 23px
@@ -21,6 +33,10 @@
                 transform: rotate(180deg)
             &--right
                 right: 0
+            &__img
+                width: 46px
+                @media all and (max-width: 768px)
+                    width: 12px
         &__counter
             position: absolute
             bottom: 0
@@ -31,47 +47,78 @@
             z-index: 1
     &__header
         display: flex
+        flex-direction: column
         justify-content: space-between
-        padding-top: 24px
         &__title
             font-size: 36px
             font-weight: 500
             color: shared.$red-color
             margin: 0 25px 0 auto
+            @media all and (max-width: 768px)
+                font-size: 18px
+
         &__location
             font-size: 18px
             font-weight: 500
             margin-top: 8px
+            @media all and (max-width: 768px)
+                font-size: 14px
+        &__tags
+            display: flex
+            flex-wrap: wrap
+            row-gap: 5px
+
+    &__details
+        display: flex
+        flex-direction: column
         &__host
             display: flex
+            justify-content: flex-end
+            align-items: center
+            @media all and (max-width: 768px)
+                order: 2
         &__name
             color: shared.$red-color
             margin-right: 10px
             text-align: right
+            @media all and (max-width: 768px)
+                font-size: 12px
         &__picture
             width: 64px
             height: 64px
             border-radius: 999px
-    &__details
-        display: flex
-        justify-content: space-between
-        &__tags
-            display: flex
+            @media all and (max-width: 768px)
+                width: 32px
+                height: 32px
+
         &__stars
             display: flex
             justify-content: flex-end
         &__star
             max-width: 24px
             margin-left: 10px
+            @media all and (max-width: 768px)
+                margin-left: 0
+                margin-right: 10px
+                max-width: 13px
+        @media all and (max-width: 768px)
+            flex-direction: row
+            justify-content: space-between
+            margin-top: 16px
 
     &__collapses
         display: grid
         grid-template-columns: 1fr 1fr
         gap: 76px
         margin: 24px auto 50px auto
+        @media all and (max-width: 768px)
+            grid-template-columns: 1fr
+            gap: 0
+
 
 .collapse
     &__content ul
         list-style-type: none
         margin: 0
         padding: 0
+
