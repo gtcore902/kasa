@@ -39,7 +39,11 @@ const Slider = ({
       <div className="hebergment-container__slider__counter">
         {index}/{length}
       </div>
-      <img src={src} alt={alt} />
+      <img
+        className="hebergment-container__slider__image"
+        src={src}
+        alt={alt}
+      />
     </div>
   );
 };

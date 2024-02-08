@@ -14,9 +14,11 @@ import '../styles/Hebergment.sass';
 const Hebergment = () => {
   const hebergments = useContext(ThemeContext);
   let { hebergmentId } = useParams();
-  // console.log(hebergmentId);
-  let target = hebergments.filter((element) => element.id === hebergmentId);
-  // console.log(target);
+  //let target = hebergments.filter((element) => element.id === hebergmentId);
+  const [target, setTarget] = useState(
+    hebergments.filter((element) => element.id === hebergmentId)
+  );
+
   const [targetedHebergment] = useState(target);
   const [sliderArray, setSliderArray] = useState([]);
   const [currentPicture, setCurrentPicture] = useState();
@@ -28,11 +30,9 @@ const Hebergment = () => {
   useEffect(() => {
     setCurrentPicture(targetedHebergment[0].pictures[0]);
   }, []);
-  // console.log(currentPicture);
 
   useEffect(() => {
     setSliderArray(targetedHebergment[0].pictures);
-    // console.log(index);
   }, []);
 
   // Increase index image on click on the right arrow
