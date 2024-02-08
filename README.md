@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+# Fully React Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is part of the Openclassrooms [Web Developer training path](https://openclassrooms.com/fr/paths/899-developpeur-web) :rocket:
 
-## Available Scripts
+The objective is to create an application using the React JS framework. No library should be used except [react-router](https://reactrouter.com/en/main).
 
-In the project directory, you can run:
+## :wrench:Tools
 
-### `yarn start`
+![html5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![css3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![javascript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=JavaScript&logoColor=000&style=flat-square)
+![react](https://shields.io/badge/react-black?logo=react&style=for-the-badge)
+![React Router](https://img.shields.io/badge/-React%20Router-CA4245?logo=react-router)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## :warning:Technical constraints:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+###:computer:React:
+It is imperative to use these React elements for quality code:
 
-### `yarn test`
+:white_check_mark:Modular and reusable component decomposition
+:white_check_mark:One component per file
+:white_check_mark:Logical structure of different files
+:white_check_mark:Use of props between components
+:white_check_mark:Use of state in components when necessary
+:white_check_mark:Event handling
+:white_check_mark:Lists: React allows for really interesting things with lists, iterating over them, for example with map. They should be used as much as possible.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+It is also recommended, but not mandatory, to use functional components rather than class components.
 
-### `yarn build`
+### :page_with_curl:React Router:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Route parameters are managed by [React Router](https://reactrouter.com/en/main) in the URL to retrieve information about each accommodation.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+:white_check_mark:There is one page per route.
+:white_check_mark:The 404 page is returned for each non-existent route, or if a value present in the URL is not part of the provided data.
+:white_check_mark:Router logic is consolidated in a single file.
+General:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+:construction:The code should not produce any errors or warnings in the console.
 
-### `yarn eject`
+The application must be responsive :triangular_ruler:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+More information about technical criteria : [Openclassrooms](https://openclassrooms.com/)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contributing
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+_No contribution needed but you can use this repository._
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+If you wish to use or contribute to the project, follow these steps:point_down::
 
-## Learn More
+- Fork the project
+- Create a feature branch
+  > git checkout -b feature/NewFeature
+- Commit your changes
+  > git commit -m 'Add NewFeature'
+- Push the branch
+  > git push origin feature/AmazingFeature
+- Open a pull Request
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+_[How to use Git?](https://docs.github.com/fr/get-started/using-git/about-git)_
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contact
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+[![github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/gtcore902)
+[![linkedin](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/ga%C3%ABtan-tremois-a956a91a3)
