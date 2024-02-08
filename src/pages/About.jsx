@@ -1,7 +1,7 @@
 import Banner from '../components/Banner';
 import Footer from '../components/Footer';
 import Collapse from '../components/Collapse';
-import mountainBackground from '../assets/kalen-emsley-Bkci_8qcdvQ-unsplash 2.svg';
+import mountainBackground from '../assets/mountain-background.png';
 
 const About = () => {
   return (

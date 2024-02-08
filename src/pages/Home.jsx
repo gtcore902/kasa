@@ -1,4 +1,4 @@
-import seaBackground from '../assets/background-banner.svg';
+import seaBackground from '../assets/sea-background.png';
 
 import Banner from '../components/Banner';
 import Cards from '../components/Cards';
