@@ -4,12 +4,32 @@
     margin: 0 100px 50px 100px
     @include shared.main-font
     &__slider
+        position: relative
         display: flex
         justify-content: center
         align-items: center
         height: 415px
         overflow: hidden
         border-radius: 25px
+        &__left-arrow
+            position: absolute
+            left: 0
+            z-index: 1
+            padding: 23px
+            transform: rotate(180deg)
+        &__right-arrow
+            position: absolute
+            right: 0
+            padding: 23px
+            z-index: 1
+        &__counter
+            position: absolute
+            bottom: 0
+            margin-bottom: 25px
+            color: white
+            font-size: 18px
+            font-weight: 500
+            z-index: 1
     &__header
         display: flex
         justify-content: space-between

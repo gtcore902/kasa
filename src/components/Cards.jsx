@@ -6,7 +6,7 @@ import Card from './Card';
 
 const Cards = () => {
   const hebergments = useContext(ThemeContext);
-  console.log(hebergments);
+  // console.log(hebergments);
   // const [hebergments, setHebergments] = useState([]);
   // // Set state with datas from logements.json
   // useEffect(() => {

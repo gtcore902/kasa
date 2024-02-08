@@ -18,19 +18,21 @@ const Hebergment = () => {
   let target = hebergments.filter((element) => element.id === hebergmentId);
   // console.log(target);
   const [targetedHebergment] = useState(target);
-  const [sliderArray, setSliderArray] = useState();
+  const [sliderArray, setSliderArray] = useState([]);
   const [currentPicture, setCurrentPicture] = useState();
+  const [length] = useState(targetedHebergment[0].pictures.length);
+  const [index, setIndex] = useState(1);
   // const navigate = useNavigate();
   const [nbStars, setNbStars] = useState();
 
   useEffect(() => {
     setCurrentPicture(targetedHebergment[0].pictures[0]);
   }, []);
-  console.log(currentPicture);
+  // console.log(currentPicture);
 
   useEffect(() => {
     setSliderArray(targetedHebergment[0].pictures);
-    // console.log(sliderArray.length);
+    // console.log(index);
   }, []);
 
   // Increase index image on click on the right arrow
@@ -38,10 +40,12 @@ const Hebergment = () => {
     const thisElement = sliderArray.indexOf(currentPicture);
     if (thisElement === sliderArray.length - 1) {
       setCurrentPicture(sliderArray[0]);
+      setIndex(1);
     } else {
       setCurrentPicture(sliderArray[thisElement + 1]);
+      setIndex(index + 1);
     }
-    console.log(thisElement);
+    // console.log(thisElement);
   };
 
   // Decrease index image on click on the left arrow
@@ -49,10 +53,12 @@ const Hebergment = () => {
     const thisElement = sliderArray.indexOf(currentPicture);
     if (thisElement === 0) {
       setCurrentPicture(sliderArray[sliderArray.length - 1]);
+      setIndex(sliderArray.length);
     } else {
       setCurrentPicture(sliderArray[thisElement - 1]);
+      setIndex(index - 1);
     }
-    console.log(thisElement);
+    // console.log(thisElement);
   };
 
   useEffect(() => {
@@ -70,7 +76,10 @@ const Hebergment = () => {
           <Slider
             src={currentPicture}
             alt={targetedHebergment[0].title}
-            updateDisplayedPicture={decreaseImageIndex}
+            increaseImageIndex={increaseImageIndex}
+            decreaseImageIndex={decreaseImageIndex}
+            index={index}
+            length={length}
           />
           {/* <img
               src={targetedHebergment[0].cover}

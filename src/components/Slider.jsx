@@ -1,9 +1,37 @@
-//import '../styles/Hebergment.sass';
+import arrow from '../assets/slider-arrow.svg';
 
-const Slider = ({ src, alt, updateDisplayedPicture }) => {
+const Slider = ({
+  src,
+  alt,
+  increaseImageIndex,
+  decreaseImageIndex,
+  index,
+  length,
+}) => {
   return (
     <div className="hebergment-container__slider">
-      <img src={src} alt={alt} onClick={updateDisplayedPicture} />
+      {/* If picture array contains more than one element  */}
+      {length > 1 && (
+        <div
+          className="hebergment-container__slider__left-arrow"
+          onClick={decreaseImageIndex}
+        >
+          <img src={arrow} alt="Flèche de gauche" />
+        </div>
+      )}
+      {/* If picture array contains more than one element  */}
+      {length > 1 && (
+        <div
+          className="hebergment-container__slider__right-arrow"
+          onClick={increaseImageIndex}
+        >
+          <img src={arrow} alt="Flèche de droite" />
+        </div>
+      )}
+      <div className="hebergment-container__slider__counter">
+        {index}/{length}
+      </div>
+      <img src={src} alt={alt} />
     </div>
   );
 };
