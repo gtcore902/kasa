@@ -13,7 +13,7 @@ const Slider = ({
       {/* If picture array contains more than one element  */}
       {length > 1 && (
         <div
-          className="hebergment-container__slider__left-arrow"
+          className="hebergment-container__slider__arrow hebergment-container__slider__arrow--left"
           onClick={decreaseImageIndex}
         >
           <img src={arrow} alt="Flèche de gauche" />
@@ -22,7 +22,7 @@ const Slider = ({
       {/* If picture array contains more than one element  */}
       {length > 1 && (
         <div
-          className="hebergment-container__slider__right-arrow"
+          className="hebergment-container__slider__arrow hebergment-container__slider__arrow--right"
           onClick={increaseImageIndex}
         >
           <img src={arrow} alt="Flèche de droite" />

@@ -11,17 +11,16 @@
         height: 415px
         overflow: hidden
         border-radius: 25px
-        &__left-arrow
+        &__arrow
             position: absolute
-            left: 0
-            z-index: 1
-            padding: 23px
-            transform: rotate(180deg)
-        &__right-arrow
-            position: absolute
-            right: 0
             padding: 23px
             z-index: 1
+            cursor: pointer
+            &--left
+                left: 0
+                transform: rotate(180deg)
+            &--right
+                right: 0
         &__counter
             position: absolute
             bottom: 0
