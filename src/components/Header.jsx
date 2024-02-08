@@ -14,7 +14,7 @@ const Header = () => {
       <img className="navbar__logo" src={logo} alt="Logo Kasa" />
       <div className="navbar__box">
         <NavLink
-          activeClassName="navbar__link--active"
+          activeclassname="navbar__link--active"
           className="navbar__link"
           to="/"
         >
@@ -23,7 +23,7 @@ const Header = () => {
           Accueil
         </NavLink>
         <NavLink
-          activeClassName="navbar__link--active"
+          activeclassname="navbar__link--active"
           className="navbar__link"
           to="/about"
         >
