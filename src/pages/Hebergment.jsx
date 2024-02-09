@@ -12,14 +12,26 @@ import redStar from '../assets/red-star.svg';
 import '../styles/Hebergment.sass';
 
 const Hebergment = () => {
-  const hebergments = useContext(ThemeContext);
+  let hebergments = useContext(ThemeContext);
+  // console.log(typeof hebergments);
+
+  if (hebergments.length > 0) {
+    window.localStorage.setItem('hebergments', JSON.stringify(hebergments));
+  }
+  if (hebergments.length < 1) {
+    hebergments = JSON.parse(window.localStorage.getItem('hebergments'));
+  }
+  // console.log(hebergments);
   let { hebergmentId } = useParams();
+  // console.log(hebergmentId);
+
   //let target = hebergments.filter((element) => element.id === hebergmentId);
   const [target, setTarget] = useState(
     hebergments.filter((element) => element.id === hebergmentId)
   );
 
   const [targetedHebergment] = useState(target);
+  // console.log(targetedHebergment);
   const [sliderArray, setSliderArray] = useState([]);
   const [currentPicture, setCurrentPicture] = useState();
   const [length] = useState(targetedHebergment[0].pictures.length);
@@ -81,12 +93,7 @@ const Hebergment = () => {
             index={index}
             length={length}
           />
-          {/* <img
-              src={targetedHebergment[0].cover}
-              alt={targetedHebergment[0].title}
-            /> */}
           <div className="">
-            {/* Header container */}
             <div className="hebergment-container__content">
               <div className="hebergment-container__header">
                 <div>
@@ -103,7 +110,6 @@ const Hebergment = () => {
                   ))}
                 </div>
               </div>
-              {/* Details container */}
               <div className="hebergment-container__details">
                 <div className="hebergment-container__details__host">
                   <p className="hebergment-container__details__name">
@@ -117,7 +123,6 @@ const Hebergment = () => {
                     alt={targetedHebergment[0].host.name}
                   />
                 </div>
-
                 <div className="hebergment-container__details__stars">
                   {range.map((element, index) =>
                     nbStars >= element ? (
