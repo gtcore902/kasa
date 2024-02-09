@@ -15,8 +15,8 @@ const Cards = () => {
   // }, []);
   return (
     <div className="card-container">
-      {hebergments.map(({ title, id }) => (
-        <Card title={title} key={id} id={id} />
+      {hebergments.map(({ title, id, cover }) => (
+        <Card title={title} key={id} id={id} cover={cover} />
       ))}
     </div>
   );
