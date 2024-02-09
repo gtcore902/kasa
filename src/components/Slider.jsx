@@ -36,9 +36,12 @@ const Slider = ({
           />
         </div>
       )}
-      <div className="hebergment-container__slider__counter">
-        {index}/{length}
-      </div>
+      {/* If picture array contains more than one element  */}
+      {length > 1 && (
+        <div className="hebergment-container__slider__counter">
+          {index}/{length}
+        </div>
+      )}
       <img
         className="hebergment-container__slider__image"
         src={src}

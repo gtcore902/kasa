@@ -15,18 +15,18 @@ const Hebergment = () => {
   let hebergments = useContext(ThemeContext);
   // console.log(typeof hebergments);
 
+  // Set local storage if page is reloaded from the same url
   if (hebergments.length > 0) {
     window.localStorage.setItem('hebergments', JSON.stringify(hebergments));
   }
   if (hebergments.length < 1) {
     hebergments = JSON.parse(window.localStorage.getItem('hebergments'));
   }
-  // console.log(hebergments);
+
   let { hebergmentId } = useParams();
-  // console.log(hebergmentId);
 
   //let target = hebergments.filter((element) => element.id === hebergmentId);
-  const [target, setTarget] = useState(
+  const [target] = useState(
     hebergments.filter((element) => element.id === hebergmentId)
   );
 
@@ -34,17 +34,27 @@ const Hebergment = () => {
   // console.log(targetedHebergment);
   const [sliderArray, setSliderArray] = useState([]);
   const [currentPicture, setCurrentPicture] = useState();
-  const [length] = useState(targetedHebergment[0].pictures.length);
+  const [length, setLength] = useState();
   const [index, setIndex] = useState(1);
   // const navigate = useNavigate();
   const [nbStars, setNbStars] = useState();
 
   useEffect(() => {
-    setCurrentPicture(targetedHebergment[0].pictures[0]);
+    if (targetedHebergment.length === 1) {
+      setCurrentPicture(targetedHebergment[0].pictures[0]);
+    }
   }, []);
 
   useEffect(() => {
-    setSliderArray(targetedHebergment[0].pictures);
+    if (targetedHebergment.length === 1) {
+      setSliderArray(targetedHebergment[0].pictures);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (targetedHebergment.length === 1) {
+      setLength(targetedHebergment[0].pictures.length);
+    }
   }, []);
 
   // Increase index image on click on the right arrow
@@ -57,7 +67,6 @@ const Hebergment = () => {
       setCurrentPicture(sliderArray[thisElement + 1]);
       setIndex(index + 1);
     }
-    // console.log(thisElement);
   };
 
   // Decrease index image on click on the left arrow
@@ -70,7 +79,6 @@ const Hebergment = () => {
       setCurrentPicture(sliderArray[thisElement - 1]);
       setIndex(index - 1);
     }
-    // console.log(thisElement);
   };
 
   useEffect(() => {
