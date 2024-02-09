@@ -2,7 +2,7 @@ import { useState } from 'react';
 import arrow from '../assets/arrow.png';
 import '../styles/Collapse.sass';
 
-const Collapse = ({ title, content }) => {
+const Collapse = ({ title, content, hebergmentSections }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isRotate, setIsRotate] = useState(false);
 
@@ -12,7 +12,15 @@ const Collapse = ({ title, content }) => {
   };
   return (
     <div className="collapse">
-      <h2 className="collapse__title" onClick={toggleClass}>
+      {/* <h2 className="collapse__title" onClick={toggleClass}> */}
+      <h2
+        className={
+          hebergmentSections
+            ? 'collapse__title collapse__title--small'
+            : 'collapse__title'
+        }
+        onClick={toggleClass}
+      >
         {title}
         <img
           className={

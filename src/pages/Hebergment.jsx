@@ -30,6 +30,7 @@ const Hebergment = () => {
     hebergments.filter((element) => element.id === hebergmentId)
   );
 
+  const [hebergmentSections] = useState(true);
   const [targetedHebergment] = useState(target);
   // console.log(targetedHebergment);
   const [sliderArray, setSliderArray] = useState([]);
@@ -158,11 +159,12 @@ const Hebergment = () => {
             <div className="hebergment-container__collapses">
               {/* Collapses components */}
               <Collapse
+                hebergmentSections={hebergmentSections}
                 title="Description"
                 content={targetedHebergment[0].description}
               />
               <Collapse
-                // className="collapse__title--small"
+                hebergmentSections={hebergmentSections}
                 title="Equipements"
                 content={
                   <ul>
