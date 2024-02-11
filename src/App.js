@@ -26,7 +26,7 @@ function App() {
       }
     }
     fetchDatas();
-  }, [hebergments]);
+  }, []);
 
   return (
     <ThemeContext.Provider value={hebergments}>
