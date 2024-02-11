@@ -12,27 +12,28 @@ import redStar from '../assets/red-star.svg';
 import '../styles/Hebergment.sass';
 
 const Hebergment = () => {
-  let hebergments = useContext(ThemeContext);
-  // console.log(typeof hebergments);
+  let [hebergments, setHebergments] = useState(useContext(ThemeContext));
+  // let hebergments = useContext(ThemeContext);
 
   // Set local storage if page is reloaded from the same url
   if (hebergments.length > 0) {
     window.localStorage.setItem('hebergments', JSON.stringify(hebergments));
   }
-  if (hebergments.length < 1) {
-    hebergments = JSON.parse(window.localStorage.getItem('hebergments'));
-  }
+
+  useEffect(() => {
+    if (hebergments.length < 1) {
+      setHebergments(JSON.parse(window.localStorage.getItem('hebergments')));
+    }
+  }, [hebergments]);
 
   let { hebergmentId } = useParams();
 
-  //let target = hebergments.filter((element) => element.id === hebergmentId);
   const [target] = useState(
     hebergments.filter((element) => element.id === hebergmentId)
   );
 
   const [hebergmentSections] = useState(true);
   const [targetedHebergment] = useState(target);
-  // console.log(targetedHebergment);
   const [sliderArray, setSliderArray] = useState([]);
   const [currentPicture, setCurrentPicture] = useState();
   const [length, setLength] = useState();
@@ -44,19 +45,19 @@ const Hebergment = () => {
     if (targetedHebergment.length === 1) {
       setCurrentPicture(targetedHebergment[0].pictures[0]);
     }
-  }, []);
+  }, [targetedHebergment]);
 
   useEffect(() => {
     if (targetedHebergment.length === 1) {
       setSliderArray(targetedHebergment[0].pictures);
     }
-  }, []);
+  }, [targetedHebergment]);
 
   useEffect(() => {
     if (targetedHebergment.length === 1) {
       setLength(targetedHebergment[0].pictures.length);
     }
-  }, []);
+  }, [targetedHebergment]);
 
   // Increase index image on click on the right arrow
   const increaseImageIndex = () => {
@@ -90,7 +91,7 @@ const Hebergment = () => {
 
   const [range] = useState([1, 2, 3, 4, 5]);
 
-  if (targetedHebergment.length === 1) {
+  if (hebergments.length !== 0) {
     return (
       <div>
         <div className="hebergment-container">
