@@ -29,10 +29,10 @@
     &__arrow
         width: 32px
         height: 32px
-        transition: transform ease-in-out 0.300s
+        transition: transform ease-in-out 0.3s
         &--isRotate
             transform: rotate(180deg)
-            transition: transform ease-in-out 0.300s
+            transition: transform ease-in-out 0.3s
     &__content
         @include shared.main-font
         font-size: 0px
@@ -44,13 +44,27 @@
         border-radius: 0 5px 5px 0
         transform-origin: top
         transform: scaleY(0)
-        transition: all ease-in-out 0.300s
+        opacity: 0
+        transition: transform 0.1s ease-in-out, font-size 0.1s ease-in-out, opacity 0.3s 0.1s ease-in-out
         &--isOpen
             padding: 25px 28px 20px 20px
             margin-bottom: 30px
             font-size: 18px
             transform: scaleY(1)
-            transition: all ease-in-out 0.300s
+            opacity: 1
             @media screen and (max-width: 768px)
                 font-size: 13px
 
+@keyframes collapseEffect 
+    0% 
+        transform: scaleY(0)
+        opacity: 0
+    50%
+        transform: scaleY(1)
+        opacity: 0
+    50%
+        transform: scaleY(1)
+        opacity: 1
+
+
+    
