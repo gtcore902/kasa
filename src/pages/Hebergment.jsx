@@ -12,8 +12,61 @@ import redStar from '../assets/red-star.svg';
 import '../styles/Hebergment.sass';
 
 const Hebergment = () => {
-  let [hebergments, setHebergments] = useState(useContext(ThemeContext));
+  // let [hebergments, setHebergments] = useState(useContext(ThemeContext));
   // let hebergments = useContext(ThemeContext);
+  let { hebergmentId } = useParams();
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [errorId, setErrorId] = useState(false);
+  const [hebergments, setHebergments] = useState([]);
+  const [targetedHebergment, setTragetedHebergment] = useState([]);
+  const [hebergmentSections] = useState(true);
+  const [sliderArray, setSliderArray] = useState([]);
+  const [currentPicture, setCurrentPicture] = useState();
+  const [length, setLength] = useState();
+  const [index, setIndex] = useState(1);
+  const [nbStars, setNbStars] = useState();
+
+  // Fetch datas
+  useEffect(() => {
+    async function fetchDatas() {
+      try {
+        const response = await fetch('../../datas/logements.json');
+        const datas = await response.json();
+        setHebergments(datas);
+        // console.log(hebergments);
+        // console.log(targetedHebergment);
+        if (response.status !== 200) {
+          console.log(response.status);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchDatas();
+  }, []);
+
+  useEffect(() => {
+    setTragetedHebergment(
+      hebergments.filter((element) => element.id === hebergmentId)
+    );
+    // setIsLoaded(true);
+    console.log(targetedHebergment);
+    // console.log(targetedHebergment.length !== 1);
+    targetedHebergment.length === 0 && setErrorId(true);
+    // console.log(errorId);
+    if (targetedHebergment.length === 0) {
+      function goToError() {
+        return <Navigate to="../../error" />;
+      }
+      goToError();
+    }
+  }, [hebergments]);
+
+  // useEffect(() => {
+  //   setTargetedHebergment(
+  //     hebergments.filter((element) => element.id === hebergmentId)
+  //   );
+  // }, [hebergments, targetedHebergment]);
 
   // Set local storage if page is reloaded from the same url
   if (hebergments.length > 0) {
@@ -24,22 +77,7 @@ const Hebergment = () => {
     if (hebergments.length < 1) {
       setHebergments(JSON.parse(window.localStorage.getItem('hebergments')));
     }
-  }, [hebergments]);
-
-  let { hebergmentId } = useParams();
-
-  const [target] = useState(
-    hebergments.filter((element) => element.id === hebergmentId)
-  );
-
-  const [hebergmentSections] = useState(true);
-  const [targetedHebergment] = useState(target);
-  const [sliderArray, setSliderArray] = useState([]);
-  const [currentPicture, setCurrentPicture] = useState();
-  const [length, setLength] = useState();
-  const [index, setIndex] = useState(1);
-  // const navigate = useNavigate();
-  const [nbStars, setNbStars] = useState();
+  }, [hebergments, targetedHebergment, hebergmentId]);
 
   useEffect(() => {
     if (targetedHebergment.length === 1) {
@@ -91,7 +129,7 @@ const Hebergment = () => {
 
   const [range] = useState([1, 2, 3, 4, 5]);
 
-  if (hebergments.length !== 0) {
+  if (targetedHebergment.length !== 0) {
     return (
       <div>
         <div className="hebergment-container">
@@ -182,7 +220,8 @@ const Hebergment = () => {
       </div>
     );
   } else {
-    return <Navigate to="../../error" />;
+    // return <Navigate to="../../error" />;
+    return <p>error</p>;
   }
 };
 
