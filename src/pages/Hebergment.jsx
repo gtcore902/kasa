@@ -4,7 +4,6 @@ import Slider from '../components/Slider';
 import Tag from '../components/Tag';
 import Collapse from '../components/Collapse';
 import Footer from '../components/Footer';
-import Error from './Error';
 import greyStar from '../assets/grey-star.svg';
 import redStar from '../assets/red-star.svg';
 import '../styles/Hebergment.sass';
@@ -16,13 +15,13 @@ const Hebergment = () => {
   const [hebergmentSections] = useState(true);
   const [sliderArray, setSliderArray] = useState([]);
   const [currentPicture, setCurrentPicture] = useState();
-  const [length, setLength] = useState();
+  const [length, setLength] = useState(0);
   const [index, setIndex] = useState(1);
   const [nbStars, setNbStars] = useState();
   const [range] = useState([1, 2, 3, 4, 5]);
-  const [title, setTitle] = useState();
   const [location, setLocation] = useState();
-  const [description, setDescription] = useState();
+  const [equipements, setEquipements] = useState([]);
+  const [tags, setTags] = useState([]);
 
   // Fetch datas
   useEffect(() => {
@@ -30,49 +29,79 @@ const Hebergment = () => {
   }, []);
 
   const fetchDatas = async () => {
-    try {
-      const response = await fetch('../../datas/logements.json');
-      const datas = await response.json();
-      setHebergments(datas);
-      // datas.filter((element) => element.id === hebergmentId)
-      setTragetedHebergment(
-        datas.filter((element) => element.id === hebergmentId)
-      );
-      // console.log(targetedHebergment);
-      // setSliderArray(targetedHebergment[0].pictures);
-      // setLength(targetedHebergment[0].pictures.length);
-      // setNbStars(targetedHebergment[0].rating);
-      console.log(hebergments);
-      console.log(targetedHebergment);
-      if (response.status !== 200) {
-        console.log(response.status);
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    fetch('../../datas/logements.json')
+      .then((response) => response.json())
+      .then((datas) => setHebergments(datas));
+    // .then(console.log(hebergments));
   };
+  // .then((hebergments) => console.log(hebergments));
+
+  // useEffect(() => {
+  //   // declare the async data fetching function
+  //   const fetchData = async () => {
+  //     // get the data from the api
+  //     const response = await fetch('../../datas/logements.json');
+  //     // convert the data to json
+  //     const datas = await response.json();
+  //     return datas;
+
+  //     // set state with the result
+  //     // setHebergments(json);
+  //     // console.log(hebergments);
+  //   };
+  //   // console.log({ fetchData });
+  //   // const { result } = fetchData();
+  //   // console.log(result);
+
+  //   // call the function
+  //   // fetchData()
+  //   //   // make sure to catch any error
+  //   //   .catch(console.error);
+  // }, []);
+  useEffect(() => {
+    setTragetedHebergment(
+      hebergments.filter((element) => element.id === hebergmentId)
+    );
+  }, [hebergments]);
 
   useEffect(() => {
-    // console.log(hebergments);
-    console.log(
-      targetedHebergment.id !== hebergmentId && console.log('not match')
-    );
-  }, []);
+    console.log(targetedHebergment);
+  }, [targetedHebergment]);
 
   useEffect(() => {
-    targetedHebergment.map(
-      (element) => (
-        setTitle(element.title),
-        setLocation(element.location),
-        setDescription(element.description)
-      )
+    setSliderArray(...targetedHebergment.map((element) => element.pictures));
+  }, [targetedHebergment]);
+
+  useEffect(() => {
+    setNbStars(targetedHebergment.map((element) => element.rating));
+  }, [targetedHebergment]);
+
+  useEffect(() => {
+    setCurrentPicture(
+      ...targetedHebergment.map((element) => element.pictures[0])
     );
-  }, []);
+  }, [targetedHebergment]);
+
+  useEffect(() => {
+    setLength(targetedHebergment.map((element) => element.pictures.length));
+  }, [targetedHebergment]);
+
+  useEffect(() => {
+    setEquipements(targetedHebergment.map((element) => element.equipments));
+  }, [targetedHebergment]);
+
+  useEffect(() => {
+    setTags(targetedHebergment.map((element) => element.tags));
+  }, [targetedHebergment]);
 
   // Increase index image on click on the right arrow
   const increaseImageIndex = () => {
-    const thisElement = sliderArray.indexOf(currentPicture);
+    const thisElement = sliderArray.indexOf(currentPicture); // démarre à -1 !!!
+    console.log('current picture : ', currentPicture);
+    console.log(sliderArray.length - 1);
+    console.log('this element : ', thisElement);
     if (thisElement === sliderArray.length - 1) {
+      console.log('égalité');
       setCurrentPicture(sliderArray[0]);
       setIndex(1);
     } else {
@@ -84,6 +113,8 @@ const Hebergment = () => {
   // Decrease index image on click on the left arrow
   const decreaseImageIndex = () => {
     const thisElement = sliderArray.indexOf(currentPicture);
+    console.log(thisElement);
+
     if (thisElement === 0) {
       setCurrentPicture(sliderArray[sliderArray.length - 1]);
       setIndex(sliderArray.length);
@@ -93,21 +124,7 @@ const Hebergment = () => {
     }
   };
 
-  // if (targetedHebergment.length !== 0) {
-  // return (
-  //   <p>
-  //     Titre : {title} Location: {location} Description: {description}
-  //   </p>
-  // );
-
   return (
-    // <p>
-    //   {targetedHebergment.map((element) => (
-    //     <p>{element.title}</p>
-    //   ))}
-    //   + test
-    // </p>
-
     <div>
       <div className="hebergment-container">
         <Slider
@@ -126,26 +143,34 @@ const Hebergment = () => {
                   {targetedHebergment.map((element) => element.title)}
                 </h1>
                 <p className="hebergment-container__header__location">
-                  {targetedHebergment.map((element) => element.location)}
+                  {location}
                 </p>
               </div>
               <div className="hebergment-container__header__tags">
-                {targetedHebergment.map((tag, index) => (
-                  <Tag key={index} tagName={tag.tags} />
-                ))}
+                {tags.map((element, index) =>
+                  element.map((tag, index) => {
+                    return <Tag key={index} tagName={tag} />;
+                  })
+                )}
               </div>
             </div>
             <div className="hebergment-container__details">
               <div className="hebergment-container__details__host">
                 <p className="hebergment-container__details__name">
-                  {/* {targetedHebergment[0].host.name.split(' ')[0]} */}
+                  {targetedHebergment.map(
+                    (element) => element.host.name.split(' ')[0]
+                  )}
                   <br />
-                  {/* {targetedHebergment[0].host.name.split(' ')[1]} */}
+                  {targetedHebergment.map(
+                    (element) => element.host.name.split(' ')[1]
+                  )}
                 </p>
                 <img
                   className="hebergment-container__details__picture"
-                  // src={targetedHebergment[0].host.picture}
-                  // alt={targetedHebergment[0].host.name}
+                  src={targetedHebergment.map(
+                    (element) => element.host.picture
+                  )}
+                  alt={targetedHebergment.map((element) => element.host.name)}
                 />
               </div>
               <div className="hebergment-container__details__stars">
@@ -184,9 +209,11 @@ const Hebergment = () => {
               title="Equipements"
               content={
                 <ul>
-                  {targetedHebergment.map((element, index) => {
-                    return <li key={index}>{element.equipments}</li>;
-                  })}
+                  {equipements.map((element, index) =>
+                    element.map((equipement, index) => {
+                      return <li key={index}>{equipement}</li>;
+                    })
+                  )}
                 </ul>
               }
             />
