@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import Slider from '../components/Slider';
 import Tag from '../components/Tag';
 import Collapse from '../components/Collapse';
@@ -10,6 +10,7 @@ import '../styles/Hebergment.sass';
 
 const Hebergment = () => {
   let { hebergmentId } = useParams();
+  const navigate = useNavigate();
   const [hebergments, setHebergments] = useState([]);
   const [targetedHebergment, setTragetedHebergment] = useState([]);
   const [hebergmentSections] = useState(true);
@@ -19,22 +20,19 @@ const Hebergment = () => {
   const [index, setIndex] = useState(1);
   const [nbStars, setNbStars] = useState();
   const [range] = useState([1, 2, 3, 4, 5]);
-  const [location, setLocation] = useState();
   const [equipements, setEquipements] = useState([]);
   const [tags, setTags] = useState([]);
 
-  // Fetch datas
   useEffect(() => {
     fetchDatas();
   }, []);
 
+  // Fetch datas
   const fetchDatas = async () => {
     fetch('../../datas/logements.json')
       .then((response) => response.json())
       .then((datas) => setHebergments(datas));
-    // .then(console.log(hebergments));
   };
-  // .then((hebergments) => console.log(hebergments));
 
   // useEffect(() => {
   //   // declare the async data fetching function
@@ -65,10 +63,6 @@ const Hebergment = () => {
   }, [hebergments]);
 
   useEffect(() => {
-    console.log(targetedHebergment);
-  }, [targetedHebergment]);
-
-  useEffect(() => {
     setSliderArray(...targetedHebergment.map((element) => element.pictures));
   }, [targetedHebergment]);
 
@@ -96,12 +90,8 @@ const Hebergment = () => {
 
   // Increase index image on click on the right arrow
   const increaseImageIndex = () => {
-    const thisElement = sliderArray.indexOf(currentPicture); // démarre à -1 !!!
-    console.log('current picture : ', currentPicture);
-    console.log(sliderArray.length - 1);
-    console.log('this element : ', thisElement);
+    const thisElement = sliderArray.indexOf(currentPicture);
     if (thisElement === sliderArray.length - 1) {
-      console.log('égalité');
       setCurrentPicture(sliderArray[0]);
       setIndex(1);
     } else {
@@ -113,8 +103,6 @@ const Hebergment = () => {
   // Decrease index image on click on the left arrow
   const decreaseImageIndex = () => {
     const thisElement = sliderArray.indexOf(currentPicture);
-    console.log(thisElement);
-
     if (thisElement === 0) {
       setCurrentPicture(sliderArray[sliderArray.length - 1]);
       setIndex(sliderArray.length);
@@ -143,7 +131,7 @@ const Hebergment = () => {
                   {targetedHebergment.map((element) => element.title)}
                 </h1>
                 <p className="hebergment-container__header__location">
-                  {location}
+                  {targetedHebergment.map((element) => element.location)}
                 </p>
               </div>
               <div className="hebergment-container__header__tags">
@@ -198,7 +186,6 @@ const Hebergment = () => {
             </div>
           </div>
           <div className="hebergment-container__collapses">
-            {/* Collapses components */}
             <Collapse
               hebergmentSections={hebergmentSections}
               title="Description"
