@@ -14,7 +14,7 @@ The objective is to create an application using the React JS framework. No libra
 
 ## :warning:Technical constraints :
 
-###:computer:React:
+### :computer:React :
 It is imperative to use these React elements for quality code:
 
 :white_check_mark: Modular and reusable component decomposition
