@@ -1,18 +1,26 @@
-import { ThemeContext } from '../App';
-import { useContext } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/Cards.sass';
-// import * as datas from '../datas/logements.json';
 import Card from './Card';
 
-const Cards = () => {
-  const hebergments = useContext(ThemeContext);
-  // console.log(hebergments);
-  // const [hebergments, setHebergments] = useState([]);
-  // // Set state with datas from logements.json
-  // useEffect(() => {
-  //   setHebergments(Array.from(datas));
-  //   // console.log(hebergments.length);
-  // }, []);
+const Cards = (title, id, cover) => {
+  const [hebergments, setHebergments] = useState([]);
+
+  useEffect(() => {
+    async function fetchDatas() {
+      try {
+        const response = await fetch('./datas/logements.json');
+        const datas = await response.json();
+        setHebergments(datas);
+        if (response.status !== 200) {
+          console.log(response.status);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    fetchDatas();
+  }, []);
+
   return (
     <div className="card-container">
       {hebergments.map(({ title, id, cover }) => (
