@@ -10,7 +10,7 @@ const Slider = ({
 }) => {
   return (
     <div className="hebergment-container__slider">
-      {/* If picture array contains more than one element  */}
+      {/* If picture array contains more than one element display left arrow */}
       {length > 1 && (
         <div
           className="hebergment-container__slider__arrow hebergment-container__slider__arrow--left"
@@ -23,7 +23,7 @@ const Slider = ({
           />
         </div>
       )}
-      {/* If picture array contains more than one element  */}
+      {/* If picture array contains more than one element display right arrow */}
       {length > 1 && (
         <div
           className="hebergment-container__slider__arrow hebergment-container__slider__arrow--right"
@@ -36,7 +36,7 @@ const Slider = ({
           />
         </div>
       )}
-      {/* If picture array contains more than one element  */}
+      {/* If picture array contains more than one element display counter  */}
       {length > 1 && (
         <div className="hebergment-container__slider__counter">
           {index}/{length}

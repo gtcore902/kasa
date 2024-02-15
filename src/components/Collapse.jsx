@@ -12,7 +12,6 @@ const Collapse = ({ title, content, hebergmentSections }) => {
   };
   return (
     <div className="collapse">
-      {/* <h2 className="collapse__title" onClick={toggleClass}> */}
       <h2
         className={
           hebergmentSections

@@ -1,8 +1,6 @@
 import logo from '../assets/logo_kasa.svg';
 import '../styles/Footer.sass';
 
-// import '../styles/Card.sass';
-
 const Footer = () => {
   return (
     <div className="footer">
