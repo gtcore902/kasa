@@ -46,27 +46,12 @@ const Hebergment = () => {
 
   useEffect(() => {
     setSliderArray(...targetedHebergment.map((element) => element.pictures));
-  }, [targetedHebergment]);
-
-  useEffect(() => {
     setNbStars(targetedHebergment.map((element) => element.rating));
-  }, [targetedHebergment]);
-
-  useEffect(() => {
     setCurrentPicture(
       ...targetedHebergment.map((element) => element.pictures[0])
     );
-  }, [targetedHebergment]);
-
-  useEffect(() => {
     setLength(targetedHebergment.map((element) => element.pictures.length));
-  }, [targetedHebergment]);
-
-  useEffect(() => {
     setEquipements(targetedHebergment.map((element) => element.equipments));
-  }, [targetedHebergment]);
-
-  useEffect(() => {
     setTags(targetedHebergment.map((element) => element.tags));
   }, [targetedHebergment]);
 
