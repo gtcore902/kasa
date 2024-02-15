@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import '../styles/Cards.sass';
 import Card from './Card';
 
-const Cards = (title, id, cover) => {
+const Cards = () => {
   const [hebergments, setHebergments] = useState([]);
 
   useEffect(() => {
