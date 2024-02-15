@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import '../styles/Cards.sass';
-// import * as datas from '../datas/logements.json';
 import Card from './Card';
 
 const Cards = (title, id, cover) => {

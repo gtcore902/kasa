@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Redirect } from 'react-router-dom';
-import importDatas from '../datas/logements.json';
+import datas from '../datas/logements.json';
 import Slider from '../components/Slider';
 import Tag from '../components/Tag';
 import Collapse from '../components/Collapse';
@@ -26,29 +25,18 @@ const Hebergment = () => {
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
-    // fetchDatas();
-    setHebergments(importDatas);
+    setHebergments(datas);
   }, []);
 
   // Check if herbgmentId is in datas
-  const isValidHebergmentId = importDatas.some(
+  const isValidHebergmentId = datas.some(
     (element) => element.id === hebergmentId
   );
-  // const isValidHebergmentId = datas.some(
-  //   (element) => element.id === hebergmentId
-  // );
 
   // If id is not in datas redirect
   useEffect(() => {
     !isValidHebergmentId && navigate('/error');
   }, []);
-
-  // Fetch datas
-  // const fetchDatas = async () => {
-  //   fetch('../../datas/logements.json')
-  //     .then((response) => response.json())
-  //     .then((datas) => setHebergments(datas));
-  // };
 
   useEffect(() => {
     setTragetedHebergment(
