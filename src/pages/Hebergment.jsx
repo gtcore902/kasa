@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
-// import * as datas from '../datas/logements.json';
+import importDatas from '../datas/logements.json';
 import Slider from '../components/Slider';
 import Tag from '../components/Tag';
 import Collapse from '../components/Collapse';
@@ -26,62 +26,30 @@ const Hebergment = () => {
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
-    fetchDatas();
+    // fetchDatas();
+    setHebergments(importDatas);
   }, []);
 
-  // Fonction pour vérifier la validité de l'hebergmentId
-  const isValidHebergmentId = async (hebergmentId, targetedHebergment) => {
-    // Vérifie si l'hebergmentId est présent dans la liste des hébergements
-    return targetedHebergment.some((element) => element.id === hebergmentId);
-  };
+  // Check if herbgmentId is in datas
+  const isValidHebergmentId = importDatas.some(
+    (element) => element.id === hebergmentId
+  );
+  // const isValidHebergmentId = datas.some(
+  //   (element) => element.id === hebergmentId
+  // );
 
-  // Vérifie si l'ID n'est pas valide et redirige si nécessaire
-  // useEffect(() => {
-  //   // if (isValidHebergmentId(hebergmentId, hebergments)) {
-  //   //   navigate('/error'); // Redirige vers la page d'erreur si l'ID n'est pas valide
-  //   // }
-  //   isValidHebergmentId(hebergmentId, hebergments).then(
-  //     (data) => data === false && navigate('/error')
-  //   );
-  // }, [hebergments]);
-
-  // Le reste de votre composant
+  // If id is not in datas redirect
+  useEffect(() => {
+    !isValidHebergmentId && navigate('/error');
+  }, []);
 
   // Fetch datas
-  const fetchDatas = async () => {
-    fetch('../../datas/logements.json')
-      .then((response) => response.json())
-      .then((datas) => setHebergments(datas));
-    // .then(
-    //   await isValidHebergmentId(hebergmentId, targetedHebergment).then(
-    //     (data) => data === false && navigate('/error')
-    //   )
-    // );
-    // .then(await loader());
-  };
+  // const fetchDatas = async () => {
+  //   fetch('../../datas/logements.json')
+  //     .then((response) => response.json())
+  //     .then((datas) => setHebergments(datas));
+  // };
 
-  // useEffect(() => {
-  //   // declare the async data fetching function
-  //   const fetchData = async () => {
-  //     // get the data from the api
-  //     const response = await fetch('../../datas/logements.json');
-  //     // convert the data to json
-  //     const datas = await response.json();
-  //     return datas;
-
-  //     // set state with the result
-  //     // setHebergments(json);
-  //     // console.log(hebergments);
-  //   };
-  //   // console.log({ fetchData });
-  //   // const { result } = fetchData();
-  //   // console.log(result);
-
-  //   // call the function
-  //   // fetchData()
-  //   //   // make sure to catch any error
-  //   //   .catch(console.error);
-  // }, []);
   useEffect(() => {
     setTragetedHebergment(
       hebergments.filter((element) => element.id === hebergmentId)
