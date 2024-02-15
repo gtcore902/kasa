@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+// import * as datas from '../datas/logements.json';
 import Slider from '../components/Slider';
 import Tag from '../components/Tag';
 import Collapse from '../components/Collapse';
@@ -27,11 +29,35 @@ const Hebergment = () => {
     fetchDatas();
   }, []);
 
+  // Fonction pour vérifier la validité de l'hebergmentId
+  const isValidHebergmentId = async (hebergmentId, targetedHebergment) => {
+    // Vérifie si l'hebergmentId est présent dans la liste des hébergements
+    return targetedHebergment.some((element) => element.id === hebergmentId);
+  };
+
+  // Vérifie si l'ID n'est pas valide et redirige si nécessaire
+  // useEffect(() => {
+  //   // if (isValidHebergmentId(hebergmentId, hebergments)) {
+  //   //   navigate('/error'); // Redirige vers la page d'erreur si l'ID n'est pas valide
+  //   // }
+  //   isValidHebergmentId(hebergmentId, hebergments).then(
+  //     (data) => data === false && navigate('/error')
+  //   );
+  // }, [hebergments]);
+
+  // Le reste de votre composant
+
   // Fetch datas
   const fetchDatas = async () => {
     fetch('../../datas/logements.json')
       .then((response) => response.json())
       .then((datas) => setHebergments(datas));
+    // .then(
+    //   await isValidHebergmentId(hebergmentId, targetedHebergment).then(
+    //     (data) => data === false && navigate('/error')
+    //   )
+    // );
+    // .then(await loader());
   };
 
   // useEffect(() => {
@@ -211,9 +237,5 @@ const Hebergment = () => {
     </div>
   );
 };
-// } else {
-//   // return <Navigate to="../../error" />;
-//   return <p>error</p>;
-//   // return <Error />;
-// }
+
 export default Hebergment;
