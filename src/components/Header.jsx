@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import logo from '../assets/logo_kasa.svg';
 import '../styles/Header.sass';
