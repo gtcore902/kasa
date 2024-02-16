@@ -8,7 +8,7 @@ const Cards = () => {
   useEffect(() => {
     async function fetchDatas() {
       try {
-        const response = await fetch('./datas/logements.json');
+        const response = await fetch('../../datas/logements.json');
         const datas = await response.json();
         setHebergments(datas);
         if (response.status !== 200) {
