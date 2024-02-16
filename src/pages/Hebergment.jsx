@@ -170,7 +170,7 @@ const Hebergment = () => {
               title="Equipements"
               content={
                 <ul>
-                  {equipements.map((element, index) =>
+                  {equipements.map((element) =>
                     element.map((equipement, index) => {
                       return <li key={index}>{equipement}</li>;
                     })
